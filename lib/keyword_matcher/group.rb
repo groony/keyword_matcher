@@ -25,7 +25,7 @@ module KeywordMatcher
     end
 
     def not_groups
-      return unless title.downcase.match?(/\r?\n#{OPERATOR_NOT}\r?\n/)
+      return [] unless title.downcase.match?(/\r?\n#{OPERATOR_NOT}\r?\n/)
       title.downcase.match(/\r?\n#{OPERATOR_NOT}.*/m).to_s.split(OPERATOR_NOT).map do |v|
         v.split("\n").reject(&:blank?).map(&:split)
       end.reject(&:blank?)
