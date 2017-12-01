@@ -18,9 +18,8 @@ Or install it yourself as:
 
 ## Usage
 
-```
-irb(main):003:0> KeywordMatcher.matched?("молоко мол\n\nрыба\nкошка   кош\n\n", 'молоко рыба кошка')
-=> true
+```ruby
+KeywordMatcher.matched?("молоко мол\n\nрыба\nкошка   кош\n\n", 'молоко рыба кошка')
 ```
 
 ## Development
