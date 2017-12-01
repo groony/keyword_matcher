@@ -1,0 +1,28 @@
+Style/Documentation:
+  Enabled: false
+Style/DoubleNegation:
+  Enabled: false
+Metrics/BlockLength:
+  Enabled: false
+Rails/SkipsModelValidations:
+  Enabled: false
+Lint/AmbiguousBlockAssociation:
+  Enabled: false
+Lint/EmptyWhen:
+  Enabled: false
+Style/MethodMissing:
+  Enabled: false
+Style/SymbolProc:
+  Enabled: false
+Style/NumericPredicate:
+  Enabled: false
+Style/FrozenStringLiteralComment:
+  Enabled: false
+Metrics/AbcSize:
+  Max: 20
+Metrics/LineLength:
+  Max: 120
+Metrics/MethodLength:
+  Max: 20
+Style/RegexpLiteral:
+  Enabled: false
