@@ -16,7 +16,6 @@ module KeywordMatcher
         .split(SEPARATOR)
         .map(&:strip)
         .map(&:downcase)
-        .reject { |w| w.size < 2 }
         .reject { |w| w =~ /\d{5,}/ }
     end
 
