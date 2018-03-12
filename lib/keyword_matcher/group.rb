@@ -19,14 +19,14 @@ module KeywordMatcher
     end
 
     def or_groups
-      title.downcase.gsub(/\r?\n#{OPERATOR_NOT}.*/m, '').split(OPERATOR_OR).map do |v|
+      title.downcase.gsub(/\r?\n#{OPERATOR_NOT}.*/m, '').split(/\r?\n#{OPERATOR_OR}\r?\n/).map do |v|
         v.split("\n").reject(&:blank?).map(&:split)
       end.reject(&:blank?)
     end
 
     def not_groups
       return [] unless title.downcase.match?(/\r?\n#{OPERATOR_NOT}\r?\n/)
-      title.downcase.match(/\r?\n#{OPERATOR_NOT}.*/m).to_s.split(OPERATOR_NOT).map do |v|
+      title.downcase.match(/\r?\n#{OPERATOR_NOT}.*/m).to_s.split(/\r?\n#{OPERATOR_NOT}\r?\n/).map do |v|
         v.split("\n").reject(&:blank?).map(&:split)
       end.reject(&:blank?)
     end

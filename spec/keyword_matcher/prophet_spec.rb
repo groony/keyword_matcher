@@ -21,7 +21,7 @@ RSpec.describe KeywordMatcher::Prophet do
 
     it 'should skip words with 5 or more digits' do
       expect(described_class.new('3452097 K.Ц.Хлеб ДАРНИЦ.форм.нар.325г').explode)
-        .to eq(%w[хлеб дарниц форм нар 325г])
+        .to eq(%w[k ц хлеб дарниц форм нар 325г])
     end
 
     it 'should not split up measures' do
@@ -31,7 +31,7 @@ RSpec.describe KeywordMatcher::Prophet do
 
     it 'identify measures correctly' do
       expect(described_class.new('4 шт + 5 уп мсла=это 121 ед пр-ции/11,мл(2.г) смеси').explode)
-        .to eq(['4шт', '5уп', 'мсла', 'это', '121ед', 'пр-ции', '11мл', '2г', 'смеси'])
+        .to eq(%w[4шт + 5уп мсла это 121ед пр-ции 11мл 2г смеси])
     end
 
     it 'trim dots from measures correctly' do

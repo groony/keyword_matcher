@@ -17,6 +17,7 @@ module KeywordMatcher
         .map(&:strip)
         .map(&:downcase)
         .reject { |w| w =~ /\d{5,}/ }
+        .reject(&:blank?)
     end
 
     def prepare
