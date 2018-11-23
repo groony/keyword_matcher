@@ -68,5 +68,14 @@ RSpec.describe KeywordMatcher do
     context 'keyword with activia' do
       it_behaves_like 'matches', { 'Йогурт Активиа Пит.2,2% Злаки' => true }, 'Активия'
     end
+
+    context 'keyword measures with coma' do
+      it_behaves_like 'matches', {
+        '7:3666380 Чай LIPTON ОБЛЕПИХА 0,5' => true,
+        '7:3666380 Чай LIPTON ОБЛЕПИХА 0.5' => true,
+        '7:3666380 Чай LIPTON ОБЛЕПИХА 0,5л' => true,
+        '7:3666380 Чай LIPTON ОБЛЕПИХА 0.5л' => true
+      }, '0,5 "0,5л" 0.5л'
+    end
   end
 end
