@@ -75,7 +75,16 @@ RSpec.describe KeywordMatcher do
         '7:3666380 Чай LIPTON ОБЛЕПИХА 0.5' => true,
         '7:3666380 Чай LIPTON ОБЛЕПИХА 0,5л' => true,
         '7:3666380 Чай LIPTON ОБЛЕПИХА 0.5л' => true
-      }, '0,5 "0,5л" 0.5л'
+      }, '0,5 0.5л'
+    end
+
+    context 'keyword measures with coma and precision' do
+      it_behaves_like 'matches', {
+        '7:3666380 Чай LIPTON ОБЛЕПИХА 0,5' => true,
+        '7:3666380 Чай LIPTON ОБЛЕПИХА 0.5' => true,
+        '7:3666380 Чай LIPTON ОБЛЕПИХА 0,5л' => true,
+        '7:3666380 Чай LIPTON ОБЛЕПИХА 0.5л' => true
+      }, '"0,5л" "0.5"'
     end
   end
 end
