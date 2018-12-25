@@ -22,7 +22,7 @@ module KeywordMatcher
 
     def prepare
       phrase.downcase
-            .gsub(/(\p{Ll})(\d+\S)/, '\1 \2') # split text from digits
+            .gsub(/(\p{Ll}{2,})(\d+\S)/, '\1 \2') # split text contains > 1 character from digits
             .gsub(/%([\p{L}\d])/, '% \1') # add space after percents
             .gsub(/(\d)[\.,](\d)/, '\1-\2') # replace separator between digits from , or . to -
             .gsub(/(\d)[\.,\s]+(#{MEASURES})\.?/, '\1\2') # replace gaps between numbers and measures

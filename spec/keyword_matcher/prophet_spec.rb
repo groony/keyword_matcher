@@ -38,5 +38,15 @@ RSpec.describe KeywordMatcher::Prophet do
       expect(described_class.new('211315079, VENUS, Сменные кассеты Swirl 4 шт.').explode)
         .to eq(%w[venus сменные кассеты swirl 4шт])
     end
+
+    it 'phone model with plus sign' do
+      expect(described_class.new('СМФ Samsung Galaxy A6+ Золотой(шт)').explode)
+        .to eq(%w[смф samsung galaxy a6+ золотой шт])
+    end
+
+    it 'phone model without plus sign' do
+      expect(described_class.new('СМФ Samsung Galaxy A6 Золотой(шт)').explode)
+        .to eq(%w[смф samsung galaxy a6 золотой шт])
+    end
   end
 end
