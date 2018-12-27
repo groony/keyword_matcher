@@ -11,7 +11,7 @@ RSpec.describe KeywordMatcher::Prophet do
 
     it 'should split camelcase text properly' do
       expect(described_class.new('БиойогСлобода8,7%десерт125г').explode)
-        .to eq(['биойогслобода', '8-7%', 'десерт', '125г'])
+        .to eq(%w[биойог слобода 8-7% десерт 125г])
     end
 
     it 'should skip words of length <= 2' do
@@ -47,6 +47,11 @@ RSpec.describe KeywordMatcher::Prophet do
     it 'phone model without plus sign' do
       expect(described_class.new('СМФ Samsung Galaxy A6 Золотой(шт)').explode)
         .to eq(%w[смф samsung galaxy a6 золотой шт])
+    end
+
+    it 'should split milka' do
+      expect(described_class.new('75063 ШоколадМилкаЕлкаНг100г').explode)
+        .to eq(%w[шоколад милка елка нг 100г])
     end
   end
 end
