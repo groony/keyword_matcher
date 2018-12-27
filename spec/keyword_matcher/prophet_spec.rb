@@ -50,7 +50,7 @@ RSpec.describe KeywordMatcher::Prophet do
     end
 
     it 'should split milka' do
-      expect(described_class.new('75063 ШоколадМилкаЕлкаНг100г').explode)
+      expect(described_class.new('75063 ШоколадМилкаЕлкаНг100Г').explode)
         .to eq(%w[шоколад милка елка нг 100г])
     end
   end
