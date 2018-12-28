@@ -14,12 +14,12 @@ module KeywordMatcher
         .split(SEPARATOR)
         .map(&:strip)
         .map(&:downcase)
-        .reject { |w| w =~ /\d{5,}/ }
         .reject(&:blank?)
     end
 
     def prepare
-      phrase.gsub(/(\p{Ll}{2,})(\d+\S)/, '\1 \2') # split text contains > 1 character from digits
+      phrase.gsub(/\d{5,}/, '') # remove gteq five-digit
+            .gsub(/(\p{Ll}{2,})(\d+\S)/, '\1 \2') # split text contains > 1 character from digits
             .gsub(/%([\p{L}\d])/, '% \1') # add space after percents
             .gsub(/(\d)[\.,](\d)/, '\1-\2') # replace separator between digits from , or . to -
             .gsub(/(\d)[\.,\s]+(#{MEASURES})\.?/i, '\1\2') # replace gaps between numbers and measures

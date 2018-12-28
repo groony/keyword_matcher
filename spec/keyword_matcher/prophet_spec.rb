@@ -68,5 +68,10 @@ RSpec.describe KeywordMatcher::Prophet do
       expect(described_class.new('404566 Корж молочный в/с75гХЗ№5').explode)
         .to eq(%w[корж молочный в с 75г хз№5])
     end
+
+    it do
+      expect(described_class.new('4680009030336 Горбуша "Доброфлот" Натур. 245г Ж/Б С Кольцом /Рос').explode)
+        .to eq(%w[горбуша доброфлот натур 245г ж б с кольцом рос])
+    end
   end
 end
