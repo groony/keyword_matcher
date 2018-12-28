@@ -13,7 +13,6 @@ module KeywordMatcher
       prepare
         .split(SEPARATOR)
         .map(&:strip)
-        .map(&:downcase)
         .reject(&:blank?)
     end
 
