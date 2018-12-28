@@ -53,5 +53,20 @@ RSpec.describe KeywordMatcher::Prophet do
       expect(described_class.new('75063 ШоколадМилкаЕлкаНг100Г').explode)
         .to eq(%w[шоколад милка елка нг 100г])
     end
+
+    it 'should split alternating Russian English' do
+      expect(described_class.new('Массажер Д/Лицаscarlett Sc - Ca301f02').explode)
+        .to eq(%w[массажер д лица scarlett sc - ca301f02])
+    end
+
+    it 'should split #' do
+      expect(described_class.new('#Шок. Милка карам/арахис').explode)
+        .to eq(%w[шок милка карам арахис])
+    end
+
+    it 'should split measure from amount' do
+      expect(described_class.new('404566 Корж молочный в/с75гХЗ№5').explode)
+        .to eq(%w[корж молочный в с 75г хз№5])
+    end
   end
 end
