@@ -2,7 +2,7 @@ module KeywordMatcher
   class Prophet
     attr_reader :phrase
 
-    SEPARATOR = %r{[\s\(\)\/*:"#'\[\]\\\/\$\.,=]+}.freeze
+    SEPARATOR = %r{[\s\(\)\/*:"#'\[\];\\\/\$\.,=]+}.freeze
     MEASURES = 'кг|г|л|мл|уп|ед|шт|мг|пак'.freeze
 
     def initialize(phrase)
