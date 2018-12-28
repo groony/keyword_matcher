@@ -69,7 +69,7 @@ RSpec.describe KeywordMatcher::Prophet do
         .to eq(%w[корж молочный в с 75г хз№5])
     end
 
-    it do
+    it 'should remove gteq five-digit' do
       expect(described_class.new('4680009030336 Горбуша "Доброфлот" Натур. 245г Ж/Б С Кольцом /Рос').explode)
         .to eq(%w[горбуша доброфлот натур 245г ж б с кольцом рос])
     end
