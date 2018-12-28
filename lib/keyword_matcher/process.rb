@@ -18,6 +18,7 @@ module KeywordMatcher
 
     def negation_found?
       return if group.not.blank?
+
       in_any?(group.not)
     end
 
@@ -26,8 +27,8 @@ module KeywordMatcher
         values.map do |terms|
           match = false
           terms.each do |term|
-            words.each do |w|
-              match = true if condition(term, w)
+            words.each do |word|
+              match = true if condition(term, word)
             end
           end
           match
@@ -35,14 +36,15 @@ module KeywordMatcher
       end.include?(true)
     end
 
-    def matched?(term, w)
-      return w == (quoted?(term) ? term[1..-2] : term) if precise?(term)
-      ::DamerauLevenshtein.distance(term, w) <= FUZZINESS
+    def matched?(term, word)
+      return word == (quoted?(term) ? term[1..-2] : term) if precise?(term)
+
+      ::DamerauLevenshtein.distance(term, word) <= FUZZINESS
     end
 
-    def condition(term, w)
+    def condition(term, word)
       synonym = find_synonym(term)
-      synonym.present? ? (matched?(term, w) || matched?(synonym, w)) : matched?(term, w)
+      synonym.present? ? (matched?(term, word) || matched?(synonym, word)) : matched?(term, word)
     end
 
     def find_synonym(term)
