@@ -86,5 +86,17 @@ RSpec.describe KeywordMatcher do
         '7:3666380 Чай LIPTON ОБЛЕПИХА 0.5л' => true
       }, '"0,5л" "0.5"'
     end
+
+    context 'keyword gr like g' do
+      it_behaves_like 'matches', {
+        'Pro Plan Junior Пауч Для Котят (Кусочки В Желе) (Курица, 85 Г.)' => true
+      }, '"85гр"'
+    end
+
+    context 'keyword g like gr' do
+      it_behaves_like 'matches', {
+        'Pro Plan Junior Пауч Для Котят (Кусочки В Желе) (Курица, 85 ГР.)' => true
+      }, '"85г"'
+    end
   end
 end
