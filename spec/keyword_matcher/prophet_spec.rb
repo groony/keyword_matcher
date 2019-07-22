@@ -73,5 +73,10 @@ RSpec.describe KeywordMatcher::Prophet do
       expect(described_class.new('4680009030336 Горбуша "Доброфлот" Натур. 245г Ж/Б С Кольцом /Рос').explode)
         .to eq(%w[горбуша доброфлот натур 245г ж б с кольцом рос])
     end
+
+    it 'should remove special quotes' do
+      expect(described_class.new('4680009030336 Горбуша “Доброфлот” «Натур.» 245г Ж/Б С Кольцом /Рос').explode)
+        .to eq(%w[горбуша доброфлот натур 245г ж б с кольцом рос])
+    end
   end
 end
