@@ -2,9 +2,6 @@ module KeywordMatcher
   class Process
     attr_reader :group, :words
 
-    FUZZINESS = 1
-    MIN_WORD_LENGTH_FOR_FUZZY = 4
-
     def initialize(group, words)
       @group = group
       @words = words
@@ -28,7 +25,10 @@ module KeywordMatcher
           match = false
           terms.each do |term|
             words.each do |word|
-              match = true if condition(term, word)
+              if condition(term, word)
+                match = true
+                break
+              end
             end
           end
           match
@@ -37,9 +37,7 @@ module KeywordMatcher
     end
 
     def matched?(term, word)
-      return word == (quoted?(term) ? term[1..-2] : term) if precise?(term)
-
-      ::DamerauLevenshtein.distance(term, word) <= FUZZINESS
+      word == term
     end
 
     def condition(term, word)
@@ -57,15 +55,6 @@ module KeywordMatcher
         %r{([0-9]+)г(?!р)} => '\1гр',
         %r{([0-9])([,|.])(.*)} => '\1-\3'
       }
-    end
-
-    def precise?(term)
-      quoted?(term) || (quoted?(term).blank? && term.length < MIN_WORD_LENGTH_FOR_FUZZY)
-    end
-
-    def quoted?(term)
-      regex = /(["'])(?:(?=(\\?))\2.)*?\1/
-      term.match?(regex)
     end
   end
 end

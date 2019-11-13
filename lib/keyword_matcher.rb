@@ -1,6 +1,5 @@
 require 'active_support'
 require 'active_support/core_ext'
-require 'damerau-levenshtein'
 require 'keyword_matcher/version'
 require 'keyword_matcher/group'
 require 'keyword_matcher/prophet'

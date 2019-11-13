@@ -20,10 +20,9 @@ Gem::Specification.new do |spec|
   spec.require_paths = ['lib']
   spec.required_ruby_version = ['>= 2.4.0', '< 2.6.0']
 
-  spec.add_runtime_dependency 'activesupport', '~> 5.0'
-  spec.add_runtime_dependency 'damerau-levenshtein', '~> 1.3'
+  spec.add_runtime_dependency 'activesupport', '>= 4.0'
   spec.add_development_dependency 'bundler', '~> 1.17'
   spec.add_development_dependency 'rake', '~> 12.3', '>= 12.3.0'
   spec.add_development_dependency 'rspec', '~> 3.0'
-  spec.add_development_dependency 'rubocop', '~> 0.61.1'
+  spec.add_development_dependency 'rubocop', '~> 0.76.0'
 end

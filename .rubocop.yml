@@ -4,8 +4,6 @@ Style/DoubleNegation:
   Enabled: false
 Metrics/BlockLength:
   Enabled: false
-Rails/SkipsModelValidations:
-  Enabled: false
 Lint/AmbiguousBlockAssociation:
   Enabled: false
 Lint/EmptyWhen:

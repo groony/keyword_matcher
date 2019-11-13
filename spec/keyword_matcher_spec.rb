@@ -15,7 +15,6 @@ RSpec.describe KeywordMatcher do
     context 'basic keyword' do
       it_behaves_like 'matches', {
         'молоко рыба кошка' => true,
-        'молоко рыба кошко' => true,
         'кошка молоко рыба' => true,
         'кот молоко риба' => false,
         'молоко рыба' => false
@@ -33,20 +32,14 @@ RSpec.describe KeywordMatcher do
     context 'keyword with gram' do
       it_behaves_like 'matches', {
         'Соус Кальве Сливочно-Чесночный Д/Мяса 230г Дой/Пак' => true
-      }, "Calve Кальве\nсливочно-чесночный\n230гр 0.23кг"
+      }, "Calve Кальве\nсливочно\nчесночный\n230гр 0.23кг"
     end
 
     context 'keyword precise' do
       it_behaves_like 'matches', {
         'Соус Кальве Сливочно-Чесночный Д/Мяса 230г Дой/Пак' => true,
         'Соус Кальве Сливочно-Чесночныл Д/Мяса 230г Дой/Пак' => false
-      }, "'сливочно-чесночный'"
-    end
-
-    context 'keyword fuzzy' do
-      it_behaves_like 'matches', {
-        'Соус Кальве Сливочно-Чесночныл Д/Мяса 230г Дой/Пак' => true
-      }, 'сливочно-чесночный'
+      }, "сливочно\nчесночный"
     end
 
     context 'keyword with measures' do
@@ -65,10 +58,6 @@ RSpec.describe KeywordMatcher do
       it_behaves_like 'matches', { 'Кофе Двойной Капучино 300 Мл' => true }, 'кофе капуччино'
     end
 
-    context 'keyword with activia' do
-      it_behaves_like 'matches', { 'Йогурт Активиа Пит.2,2% Злаки' => true }, 'Активия'
-    end
-
     context 'keyword measures with coma' do
       it_behaves_like 'matches', {
         '7:3666380 Чай LIPTON ОБЛЕПИХА 0,5' => true,
@@ -84,19 +73,19 @@ RSpec.describe KeywordMatcher do
         '7:3666380 Чай LIPTON ОБЛЕПИХА 0.5' => true,
         '7:3666380 Чай LIPTON ОБЛЕПИХА 0,5л' => true,
         '7:3666380 Чай LIPTON ОБЛЕПИХА 0.5л' => true
-      }, '"0,5л" "0.5"'
+      }, '0,5л 0.5'
     end
 
     context 'keyword gr like g' do
       it_behaves_like 'matches', {
         'Pro Plan Junior Пауч Для Котят (Кусочки В Желе) (Курица, 85 Г.)' => true
-      }, '"85гр"'
+      }, '85гр'
     end
 
     context 'keyword g like gr' do
       it_behaves_like 'matches', {
         'Pro Plan Junior Пауч Для Котят (Кусочки В Желе) (Курица, 85 ГР.)' => true
-      }, '"85г"'
+      }, '85г'
     end
   end
 end

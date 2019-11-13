@@ -6,7 +6,8 @@ module KeywordMatcher
     OPERATOR_NOT = 'не'.freeze
 
     def initialize(title)
-      @title = title
+      @title = title.gsub(/(["'])/, '') # remove quotes
+                    .gsub(/(\d)[\.,](\d)/, '\1-\2') # replace separator between digits from , or . to -
       @all = values
       @or = or_groups
       @not = not_groups
